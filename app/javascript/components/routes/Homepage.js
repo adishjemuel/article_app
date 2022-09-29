@@ -37,7 +37,7 @@ const Homepage = (props) => {
     if (props.articles && props.articles.length) {
       setArticles(props.articles);
     }
-    fetchArticles();
+    // fetchArticles();
     if (location.state && location.state.data) setUser(location.state.data);
 
     if (window.localStorage.getItem("token")) {
@@ -73,9 +73,11 @@ const Homepage = (props) => {
         </a>
       </li>
     ));
+
+    console.log(props)
   return (
     <div>
-      <ArticleNavbar user={user} setArticles={setArticles}/>
+      <ArticleNavbar user={user} setArticles={setArticles} setCurrentPage={setCurrentPage}/>
       <div class="container text-center mb-4">
         <div class="row">
           <div class="col"></div>

@@ -17,6 +17,7 @@ const ArticleNavbar = (props) => {
   try{
     const articles = await articlesApi.searchArticles(data.search_value) 
     console.log(articles)  
+    props.setCurrentPage(1)
     props.setArticles(articles.articles)
   }catch(error){
     console.log(error)

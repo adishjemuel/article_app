@@ -14,12 +14,13 @@ const Article = () => {
     console.log(data)  
     setArticle(data);
    }catch(error){
-    console.log('error');
+    console.log('errors');
    }
 
   }
   useEffect(() => {
-   fetchArticle();
+  //  fetchArticle();
+    
   },[])
   console.log(id);
   console.log(article); 

@@ -3,12 +3,14 @@ class ArticlesController < ApplicationController
 
     before_action :authenticate_user! 
     
-    before_action :set_articles, only: [:index]
-    PAGINATE_PER_PAGE = 2;
+    PAGINATE_PER_PAGE = 5;
 
     def index  
-      data  = { articles: @articles, pages: (@count/PAGINATE_PER_PAGE)}
-      render json: data, include: ['user']
+      @q = Article.ransack(params[:q]) 
+      @articles = @q.result.page(params[:page).per(PAGINATE_PER_PAGE)
+      p 'test'
+      # data  = { articles: @articles, pages: (@count/PAGINATE_PER_PAGE)}
+      # render json: data, include: ['user']
     end
     
     def show 
@@ -51,12 +53,6 @@ class ArticlesController < ApplicationController
     end
    
     
-    def set_articles  
-      condition = JSON.parse(params[:q]) if params[:q].present?
-      @q = Article.ransack(condition) 
-      @articles = @q.result.page params[:page]
-      @count = @articles.count
-    end 
 
   
   end
