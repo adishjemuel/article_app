@@ -1,1 +1,1 @@
-<%= react_component('routes/Homepage', {articles: @articles, count: @articles.count} ) %>
+<%= react_component('routes/Homepage', {articles: @articles, pages: @articles.total_pages , authors: @users, user: @current_user, page: @articles.current_page } ) %>

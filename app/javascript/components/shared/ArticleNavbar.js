@@ -1,29 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import articlesApi from "../../services/articlesApi";
-import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
 const ArticleNavbar = (props) => {
-  
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-  
-  const searchArticles = async data => {
-   
-  try{
-    const articles = await articlesApi.searchArticles(data.search_value) 
-    console.log(articles)  
-    props.setCurrentPage(1)
-    props.setArticles(articles.articles)
-  }catch(error){
-    console.log(error)
-  }
-
-  }
   return (
     <nav class="navbar navbar-expand-lg bg-light sticky-top">
       <div class="container-fluid ">
@@ -32,52 +9,48 @@ const ArticleNavbar = (props) => {
         </span>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav me-auto">
-            <Link to="/" exact className="nav-link active me-2">
+            <a href="/" className="nav-link active me-2">
               {" "}
               Home{" "}
-            </Link>
-            <form role="search" class="me-2 w-100" onSubmit={handleSubmit(searchArticles)}>
+            </a>
+            <form role="search" class="me-2 w-100">
               <input
-                class="form-control "
+                className="form-control "
                 type="search"
                 placeholder="Search Articles"
                 aria-label="Search"
-                {...register("search_value")} 
+                name="title_or_highlight_cont"
               />
             </form>
           </div>
           {!props.user && (
             <div class="me-2 d-flex">
-              <Link to="/users/sign_in" class="btn btn-link" type="button">
+              <a href="/users/sign_in" className="btn btn-link">
                 {" "}
-                Sign In
-              </Link>
-              <Link
-                to="/users/sign_up"
+                Sign In{" "}
+              </a>
+              <a
+                href="/users/sign_up"
                 style={{ textDecoration: "none" }}
-                class="btn btn-primary"
-                type="button"
+                className="btn btn-primary"
               >
                 {" "}
                 Create Account{" "}
-              </Link>
+              </a>
             </div>
           )}
           {props.user && (
             <div class="me-2 d-flex">
-              <Link to="/users/post" class="btn btn-link" type="button">
-                {" "}
-                Create Article
-              </Link>
-              <Link
-                to="/users/profile"
+              <a href="/users/post" className="btn btn-link">
+                Create Article{" "}
+              </a>
+              <a
+                href="/users/profile"
                 style={{ textDecoration: "none" }}
-                class="btn btn-primary"
-                type="button"
+                className="btn btn-primary"
               >
-                {" "}
                 Profile
-              </Link>
+              </a>
             </div>
           )}
         </div>

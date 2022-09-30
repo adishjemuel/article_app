@@ -1,37 +1,7 @@
 import React from "react";
 import ArticleNavbar from "../shared/ArticleNavbar";
-import { useForm } from "react-hook-form";
-import registrationsApi from "../../services/registrationsApi"
-import { useHistory } from "react-router-dom";
 
-const Register = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-  let history = useHistory();
-  const onSignUp = async(data) => {
-    const { username, first_name, last_name, email, password } = data;
-    const userDetails = {
-      user: {
-        username,
-        first_name,
-        last_name,
-        email,
-        password,
-      }, 
-    };
-    try{
-      const data = await registrationsApi.register(userDetails)
-      console.log(data)
-      reset()
-      history.push({ pathname: '/', state: {data} })
-    }catch(error){
-      console.log(error)
-    }
-  };
+const Register = (props) => {
   return (
     <>
       {" "}
@@ -40,14 +10,17 @@ const Register = () => {
         <div class="row">
           <div class="col"></div>
           <div class="col-6">
-            <form onSubmit={handleSubmit(onSignUp)}>
+            <form action="/users" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" />
+            <input name="authenticity_token" type="hidden" value={props.token} />
+             <input name="commit" type="hidden" value="Sign up"/>
               <div class="mb-3">
                 <label class="form-label">Username</label>
                 <input
                   type="text"
                   class="form-control"
                   aria-describedby="usernameHelp"
-                  {...register("username")}
+                  name="user[username]"
                 />
                 <div id="usernameHelp" class="form-text">
                   It is what the users see when you post an article. Make sure
@@ -56,19 +29,11 @@ const Register = () => {
               </div>
               <div class="mb-3">
                 <label class="form-label">First Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  {...register("first_name")}
-                />
+                <input type="text" class="form-control" name="user[first_name]" />
               </div>
               <div class="mb-3">
                 <label class="form-label">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  {...register("last_name")}
-                />
+                <input type="text" class="form-control" name="user[last_name]" />
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">
@@ -79,7 +44,7 @@ const Register = () => {
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  {...register("email")}
+                  name="user[email]"
                 />
                 <div id="emailHelp" class="form-text">
                   We'll never share your email with anyone else.
@@ -93,7 +58,7 @@ const Register = () => {
                   type="password"
                   class="form-control"
                   id="exampleInputPassword1"
-                  {...register("password")}
+                  name="user[password]"
                 />
                 <div id="passwordHelp" class="form-text">
                   Your password must be 8-20 characters long, contain letters

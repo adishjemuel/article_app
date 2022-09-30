@@ -1,30 +1,7 @@
-import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import React  from "react";
 import ArticleNavbar from "../shared/ArticleNavbar"; 
-import articlesApi from "../../services/articlesApi";
-
-const Article = () => {
-  const { id } = useParams();
-  const [article, setArticle] = useState(null) 
-  
-  const fetchArticle = async () => {
-   try{
-
-    const data = await articlesApi.getArticle(id) 
-    console.log(data)  
-    setArticle(data);
-   }catch(error){
-    console.log('errors');
-   }
-
-  }
-  useEffect(() => {
-  //  fetchArticle();
-    
-  },[])
-  console.log(id);
-  console.log(article); 
-  if(article!=null){
+const Article = (props) => {
+  if(props.article!=null){
   return (
     <>
       <ArticleNavbar />
@@ -34,14 +11,14 @@ const Article = () => {
           <div class="col-6 text-center">
             <figure class="mt-4">
               <blockquote class="blockquote">
-                <h1 className="display-5">{article.title}</h1>
+                <h1 className="display-5">{props.article.title}</h1>
                 <small class="text-muted">
-                  {article.highlight}
+                  {props.article.highlight}
 
                 </small>
               </blockquote>
               <figcaption class="blockquote-footer">
-                {`${article.user.first_name}  ${article.user.last_name}`}
+                {`${props.author.first_name}  ${props.author.last_name}`}
               </figcaption>
             </figure>
           </div>
@@ -53,7 +30,7 @@ const Article = () => {
           <div class="col-3"></div>
           <div class="col-6">
             {" "}
-            <p>{article.body}</p>{" "}
+            <p>{props.article.body}</p>{" "}
           </div>
           <div class="col"> </div>
         </div>
