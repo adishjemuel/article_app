@@ -1,7 +1,9 @@
 import React  from "react";
 import ArticleNavbar from "../shared/ArticleNavbar"; 
 const Article = (props) => {
+
   if(props.article!=null){
+    console.log(props.author)
   return (
     <>
       <ArticleNavbar />

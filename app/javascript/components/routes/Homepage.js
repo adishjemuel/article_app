@@ -41,6 +41,8 @@ const Homepage = (props) => {
         </li>
       </form>
     ));
+
+    console.log(props.user)
   return (
     <div>
       <ArticleNavbar

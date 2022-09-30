@@ -13,14 +13,15 @@ const ArticleNavbar = (props) => {
               {" "}
               Home{" "}
             </a>
-            <form role="search" class="me-2 w-100">
+            <form role="search" className="me-2 w-100 d-flex" action="/" method="get">
               <input
-                className="form-control "
+                className="form-control me-2"
                 type="search"
-                placeholder="Search Articles"
+                placeholder="Search an article here"
                 aria-label="Search"
-                name="title_or_highlight_cont"
-              />
+                name="q[title_or_highlight_cont]"
+              /> 
+              <input className="btn btn-outline-success ms-2" type="submit" placeholder="Search"/>
             </form>
           </div>
           {!props.user && (
