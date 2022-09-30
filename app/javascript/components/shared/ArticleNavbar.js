@@ -42,7 +42,7 @@ const ArticleNavbar = (props) => {
           )}
           {props.user && (
             <div class="me-2 d-flex">
-              <a href="/users/post" className="btn btn-link">
+              <a href="/articles/new" className="btn btn-link">
                 Create Article{" "}
               </a>
               <a

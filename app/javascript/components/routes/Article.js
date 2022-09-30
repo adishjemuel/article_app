@@ -6,7 +6,7 @@ const Article = (props) => {
     console.log(props.author)
   return (
     <>
-      <ArticleNavbar />
+      <ArticleNavbar user={props.user}/>
       <div className="container">
         <div class="row">
           <div class="col-3"></div>

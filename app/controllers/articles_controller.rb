@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :update, :destroy] 
-
-    before_action :set_user
+    
+    before_action :authenticate_user!, only: [:update, :destroy, :create] 
     PAGINATE_PER_PAGE = 5;
 
     def index   
@@ -12,13 +12,15 @@ class ArticlesController < ApplicationController
          @users << article.user
       end
     end
+
+    def new 
+    end 
     
     def show 
     end
     
-    def create 
-      @article = Article.new(article_params) 
-  
+    def create  
+      @article = current_user.articles.new(article_params)
       if @article.save 
         redirect_to @article 
       else 
@@ -50,10 +52,5 @@ class ArticlesController < ApplicationController
     def set_article 
       @article = Article.find(params[:id]) 
     end 
-
-    def set_user 
-      @current_user = current_user
-    end 
-   
   end
   
