@@ -1,9 +1,10 @@
 import React  from "react";
 import ArticleNavbar from "../shared/ArticleNavbar"; 
+import Comments from "../shared/Comments";
 const Article = (props) => {
 
   if(props.article!=null){
-    console.log(props.author)
+    console.log(props.comments)
   return (
     <>
       <ArticleNavbar user={props.user}/>
@@ -36,7 +37,8 @@ const Article = (props) => {
           </div>
           <div class="col"> </div>
         </div>
-      </div>
+      </div> 
+      <Comments comments={props.comments} articleId = {props.article.id} token={props.token}/>
     </>
   );}
   return null;

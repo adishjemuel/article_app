@@ -5,16 +5,12 @@ class ArticlesController < ApplicationController
     PAGINATE_PER_PAGE = 5;
 
     def index   
-      test_article = Article.find(16)
       @q = Article.ransack(params[:q]) 
       @articles = @q.result.includes(:user).page(params[:page]).per(PAGINATE_PER_PAGE) 
-      @users = []  
-      @articles.each do |article| 
-         @users << article.user
-      end
+      @flattened_articles = @articles.map { |article| [article, article.user]}
     end
 
-    def new 
+    def new  
     end 
 
     def edit 
@@ -24,6 +20,8 @@ class ArticlesController < ApplicationController
     end
     
     def show 
+      @author = @article.user
+      @comments = @article.comments.map { |comment| [comment, comment.user] }
     end
     
     def create  
@@ -57,7 +55,7 @@ class ArticlesController < ApplicationController
     end
   
     def set_article 
-      @article = Article.find(params[:id]) 
+      @article = Article.includes(:user, comments: [:user]).find(params[:id]) 
     end 
   end
   

@@ -3,22 +3,21 @@ import PropTypes from "prop-types";
 import ArticleNavbar from "../shared/ArticleNavbar";
 const Homepage = (props) => {
   const [articles, setArticles] = useState(props.articles);
-  const [authors, setAuthors] = useState(props.authors);
   const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(props.page);
- 
+  console.log(props.articles)
   const content = articles.map((article, index) => (
     <div key={article.id} class="container">
       <div class="row">
         <div class="col-3"></div>
         <div class="jumbotron col-6">
           <h1 class="display-6">
-            < a href={`/articles/${article.id}`}> {article.title} </a>
+            < a href={`/articles/${article[0].id}`}> {article[0].title} </a>
           </h1>
-          <p class="lead">{article.highlight}</p>
+          <p class="lead">{article[0].highlight}</p>
           <figcaption class="blockquote-footer">
             <i class="bi bi-person-fill mx-2"></i>
-            {authors[index].username}
+            {article[1].username}
           </figcaption>
           <hr class="my-4" />
         </div>
@@ -29,7 +28,7 @@ const Homepage = (props) => {
   const pagesButton = Array(props.pages)
     .fill(1)
     .map((el, index) => (
-      <form action={`/articles`} method="get">
+      <form action={`/articles`} method="get" key={index}>
         <li
           className={`page-item ${index + 1 == currentPage ? "active" : ""}`}
           key={index}
