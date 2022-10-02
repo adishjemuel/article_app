@@ -45,7 +45,8 @@ const Homepage = (props) => {
   return (
     <div>
       <ArticleNavbar
-        user={props.user}
+        user={props.user} 
+        token={props.token}
       />
       <div class="container text-center mb-4">
         <div class="row">
