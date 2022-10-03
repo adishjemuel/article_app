@@ -1,1 +1,1 @@
-<%= react_component('routes/Article', { article: @article, comments: @comments, author: @article.user, user: current_user, token: form_authenticity_token.to_s}) %>
+<%= react_component('routes/Article', { article: @article, show_dropdowns: @author == current_user, comments: @comments, author: @article.user, user: current_user, token: form_authenticity_token.to_s}) %>

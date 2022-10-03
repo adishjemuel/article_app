@@ -1,0 +1,1 @@
+<%= react_component('routes/EditCommentForm', { articleId: @article.id, commentId: @comment.id, comment: @comment.body, token: form_authenticity_token.to_s, user: current_user}) %>

@@ -71,7 +71,7 @@ const ArticleNavbar = (props) => {
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href={`/articles/?user_id=${props.user.id}`}>
                       Articles
                     </a>
                   </li>

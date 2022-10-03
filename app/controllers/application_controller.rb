@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
 
   def check_current_user
     @current_user||=current_user 
-  end 
+  end  
+
+
+  def same_user?(user)
+    current_user == user 
+  end
 
 end

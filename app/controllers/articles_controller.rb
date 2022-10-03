@@ -5,8 +5,13 @@ class ArticlesController < ApplicationController
     PAGINATE_PER_PAGE = 5;
 
     def index   
-      @q = Article.ransack(params[:q]) 
-      @articles = @q.result.includes(:user).page(params[:page]).per(PAGINATE_PER_PAGE) 
+      @articles = Article.joins(:user).where(:users => {:id => params[:user_id]}) if params[:user_id]
+      if @articles.present? 
+        @q = @articles.ransack(params[:q]) 
+      else 
+         @q = Article.ransack(params[:q]) 
+      end
+      @articles = @q.result.includes(:user).page(params[:page]).per(PAGINATE_PER_PAGE)  
       @flattened_articles = @articles.map { |article| [article, article.user]}
     end
 
@@ -14,7 +19,7 @@ class ArticlesController < ApplicationController
     end 
 
     def edit 
-      if current_user != @article.user 
+      unless same_user?(@article.user)
         redirect_to '/'
       end
     end
@@ -34,7 +39,7 @@ class ArticlesController < ApplicationController
     end 
   
     def update 
-      if @article.user == current_user && @article.update(article_params)
+      if  same_user?(@article.user) && @article.update(article_params)
         redirect_to @article 
       else 
         render :edit, status: :unprocessable_entity
