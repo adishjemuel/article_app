@@ -6,6 +6,7 @@ const Homepage = (props) => {
   const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(props.page);
   console.log(props.articles);
+  console.log(currentPage)
   const content = articles.map((article, index) => (
     <div key={article[0].id} class="container">
       <div class="row">
@@ -39,10 +40,7 @@ const Homepage = (props) => {
                   </a>
                 </li>
                 <li>
-                  <form
-                    action={`/articles/${article[0].id}`}
-                    method="post"
-                  >
+                  <form action={`/articles/${article[0].id}`} method="post">
                     <input name="_method" type="hidden" value="delete" />
                     <input
                       name="authenticity_token"
@@ -112,17 +110,24 @@ const Homepage = (props) => {
             <nav aria-label="Page navigation example" class="col-6">
               <ul class="pagination">
                 <li class="page-item">
-                  <a class="page-link" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
+                  {" "}
+                  <form action={`/articles`} method="get">
+                    <input name="page" value={currentPage - 1} type="hidden" />
+                    <button class="page-link" aria-label="Previous" disabled={currentPage  == 1 ? 'true' : ''}>
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </button>
+                  </form>
                 </li>
                 {pagesButton}
                 <li class="page-item">
-                  <a class="page-link" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                  </a>
+                  <form action={`/articles`} method="get">
+                    <input name="page" value={currentPage + 1} type="hidden" />
+                    <button class="page-link" aria-label="Next" disabled={currentPage == props.pages ? 'true': ''}>
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </button>
+                  </form>
                 </li>
               </ul>
             </nav>
