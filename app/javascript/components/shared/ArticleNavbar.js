@@ -10,7 +10,7 @@ const ArticleNavbar = (props) => {
           Dev Articles
         </span>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav me-auto">
+          <div class="navbar-nav me-auto d-flex align-items-center">
             <a href="/" className="nav-link active me-2">
               {" "}
               Home{" "}
@@ -66,7 +66,7 @@ const ArticleNavbar = (props) => {
 
                 <ul class="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/users/edit">
                       Profile
                     </a>
                   </li>

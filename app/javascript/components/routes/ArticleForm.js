@@ -4,7 +4,7 @@ const ArticleForm = (props) => {
   return (
     <>
       {" "}
-      <ArticleNavbar />
+      <ArticleNavbar user={props.user} token={props.token}/>
       <div class="container mt-4">
         <div class="row">
           <div class="col"></div>
