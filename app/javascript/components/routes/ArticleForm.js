@@ -1,7 +1,8 @@
 import React from "react";
 import ArticleNavbar from "../shared/ArticleNavbar";
 const ArticleForm = (props) => {
-  if (props.user)
+  if (props.user) { 
+    console.log(props.user)
     return (
       <>
         {" "}
@@ -73,6 +74,8 @@ const ArticleForm = (props) => {
         </div>
       </>
     );
+  }
+  return null;
 };
 
 export default ArticleForm;

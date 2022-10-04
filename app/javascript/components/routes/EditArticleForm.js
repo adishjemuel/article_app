@@ -4,7 +4,6 @@ const EditArticleForm = (props) => {
   if (props.user)
     return (
       <>
-        {" "}
         <ArticleNavbar />
         <div class="container mt-4">
           <div class="row">

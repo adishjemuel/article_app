@@ -5,6 +5,7 @@ const Homepage = (props) => {
   const [articles, setArticles] = useState(props.articles);
   const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(props.page);
+  console.log(props.user)
   console.log(props.articles);
   console.log(currentPage)
   const content = articles.map((article, index) => (
@@ -20,7 +21,7 @@ const Homepage = (props) => {
             <i class="bi bi-person-fill mx-2"></i>
             {article[1].username}
           </figcaption>
-          {props.user.username == article[1].username && (
+          {props.user && props.user.username == article[1].username && (
             <div class="dropdown">
               <button
                 class="btn btn-secondary dropdown-toggle"
@@ -77,7 +78,6 @@ const Homepage = (props) => {
       </form>
     ));
 
-  console.log(props.user);
   return (
     <div>
       <ArticleNavbar user={props.user} token={props.token} />

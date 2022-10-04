@@ -1,6 +1,7 @@
 import React from "react";
 import ArticleNavbar from "../shared/ArticleNavbar";
-const SignIn = (props) => {
+const SignIn = (props) => { 
+    console.log(props.error)
   return (
     <>
       {" "}

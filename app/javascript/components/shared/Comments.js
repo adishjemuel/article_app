@@ -8,7 +8,7 @@ const Comments = (props) => {
       <div className="card-body">
         <h5 class="card-title mb-2">@{element[1].username} </h5>
         <p class="card-text"> {element[0].body} </p>
-        {props.user.username == element[1].username && (
+        {props.user && props.user.username == element[1].username && (
           <div class="dropdown">
             <button
               class="btn btn-secondary dropdown-toggle"

@@ -1,7 +1,8 @@
 import React from "react";
 import ArticleNavbar from "../shared/ArticleNavbar";
 
-const Register = (props) => {
+const Register = (props) => { 
+  console.log(props.error)
   return (
     <>
       {" "}

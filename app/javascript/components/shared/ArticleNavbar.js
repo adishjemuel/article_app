@@ -2,7 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const ArticleNavbar = (props) => {
+const ArticleNavbar = (props) => { 
+  console.log(props.user)
   return (
     <nav class="navbar navbar-expand-lg bg-light sticky-top">
       <div class="container-fluid ">
